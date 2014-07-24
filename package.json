@@ -8,9 +8,8 @@
   "devDependencies": {
     "broccoli": "^0.12.3",
     "broccoli-static-compiler": "^0.1.4",
-    "broccoli-es6-concatenator": "^0.1.4",
+    "broccoli-concat": "^0.0.7",
     "broccoli-sass": "^0.2.0",
-    "broccoli-coffee": "^0.1.0",
     "broccoli-merge-trees": "^0.1.4",
     "broccoli-bower": "^0.2.0"
   }

@@ -1,6 +1,6 @@
 var filterCoffeeScript = require('broccoli-coffee');
 var pickFiles = require('broccoli-static-compiler');
-var compileES6 = require('broccoli-es6-concatenator');
+var concat = require('broccoli-concat');
 var compileSass = require('broccoli-sass');
 var mergeTrees = require('broccoli-merge-trees');
 var findBowerTrees = require('broccoli-bower');
@@ -9,15 +9,14 @@ function preprocess (tree) {
   tree = filterCoffeeScript(tree, {
     bare: true
   });
-
   return tree;
-}
+};
 
 var javascript = 'javascript';
 javascript = pickFiles(javascript, {
   srcDir: '',
   destDir: 'appkit'
-})
+});
 javascript = preprocess(javascript);
 
 var stylesheets = 'stylesheets'
@@ -25,22 +24,15 @@ stylesheets = pickFiles(stylesheets, {
   srcDir: '',
   destDir: 'appkit'
 });
-stylesheets = preprocess(stylesheets);
 
-var vendor = 'vendor';
-
-var sourceTrees = [javascript, stylesheets, vendor]
+var sourceTrees = [javascript, stylesheets];
 sourceTrees = sourceTrees.concat(findBowerTrees());
 
 var appAndDependencies = new mergeTrees(sourceTrees, { overwrite: true });
 
-var appJs = compileES6(appAndDependencies, {
-  loaderFile: 'loader.js',
+var appJs = concat(appAndDependencies, {
   inputFiles: [
-    'appkit/**/*.js'
-  ],
-  legacyFilesToAppend: [
-    'phaser.js'
+    '**/*.js'
   ],
   outputFile: '/assets/app.js'
 });
