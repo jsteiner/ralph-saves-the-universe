@@ -6,6 +6,7 @@ Install development dependencies:
 
     npm install --global broccoli-cli
     npm install
+    bower install
 
 Serve the app:
 

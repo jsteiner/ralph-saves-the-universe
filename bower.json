@@ -1,0 +1,6 @@
+{
+  "name": "ralph-saves-the-universe",
+  "dependencies": {
+    "phaser-official": "2.0.7"
+  }
+}
