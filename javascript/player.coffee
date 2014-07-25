@@ -14,14 +14,15 @@ class Player
     @createGunSprite()
     @createWifiSprite()
 
-    @cursors = @game.input.keyboard.createCursorKeys()
+    @leftKey = @game.input.keyboard.addKey(Phaser.Keyboard.A)
+    @rightKey = @game.input.keyboard.addKey(Phaser.Keyboard.D)
 
   update: =>
     @resetMotion()
 
-    if @cursors.left.isDown
+    if @leftKey.isDown
       @moveLeft()
-    else if @cursors.right.isDown
+    else if @rightKey.isDown
       @moveRight()
 
   createBodySprite: =>
