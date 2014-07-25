@@ -12,16 +12,15 @@ function preprocess (tree) {
   return tree;
 };
 
-var javascript = 'javascript';
-javascript = pickFiles(javascript, {
-  srcDir: '',
+var app = 'app';
+var javascript = pickFiles(app, {
+  srcDir: 'javascript',
   destDir: 'appkit'
 });
 javascript = preprocess(javascript);
 
-var stylesheets = 'stylesheets'
-stylesheets = pickFiles(stylesheets, {
-  srcDir: '',
+var stylesheets = pickFiles(app, {
+  srcDir: 'stylesheets',
   destDir: 'appkit'
 });
 
@@ -39,12 +38,11 @@ var appJs = concat(appAndDependencies, {
 
 var appCss = compileSass(sourceTrees, 'appkit/app.scss', 'assets/app.css');
 
-var images = 'images'
-images = pickFiles(images, {
-  srcDir: '',
+var images = pickFiles(app, {
+  srcDir: 'images',
   destDir: 'assets'
 });
 
-var publicFiles = 'public';
+var publicFiles = 'app/public';
 
 module.exports = mergeTrees([appJs, appCss, images, publicFiles]);
