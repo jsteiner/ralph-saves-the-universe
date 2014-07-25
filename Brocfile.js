@@ -39,6 +39,12 @@ var appJs = concat(appAndDependencies, {
 
 var appCss = compileSass(sourceTrees, 'appkit/app.scss', 'assets/app.css');
 
+var images = 'images'
+images = pickFiles(images, {
+  srcDir: '',
+  destDir: 'assets'
+});
+
 var publicFiles = 'public';
 
-module.exports = mergeTrees([appJs, appCss, publicFiles]);
+module.exports = mergeTrees([appJs, appCss, images, publicFiles]);
