@@ -1,6 +1,6 @@
 class Player extends Phaser.Sprite
   constructor: (@game) ->
-    Phaser.Sprite.call(@, @game, 32, @game.world.height - 150, 'body')
+    Phaser.Sprite.call(@, @game, 32, @game.world.height - 144, 'body')
 
   create: =>
     @anchor.setTo(.5, 0)
