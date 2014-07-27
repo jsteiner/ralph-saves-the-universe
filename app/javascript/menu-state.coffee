@@ -1,14 +1,10 @@
 class MenuState
-  constructor: ->
-
   preload: =>
     @game.load.spritesheet('startButton', 'assets/start-button.png', 300, 150)
 
   create: =>
     @game.stage.backgroundColor = "#FFFFFF"
     @createStartButton()
-
-  update: =>
 
   startClick: =>
     @game.state.start('play')

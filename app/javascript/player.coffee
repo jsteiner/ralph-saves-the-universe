@@ -1,60 +1,34 @@
-class Player
-  constructor: (game) ->
-    @game = game
-
-  preload: =>
-    @game.load.spritesheet('body', 'assets/ralph-body.png', 34, 80)
-    @game.load.spritesheet('gun', 'assets/ralph-gun.png', 28, 16)
-    @game.load.spritesheet('wifi', 'assets/ralph-wifi.png', 29, 13)
+class Player extends Phaser.Sprite
+  constructor: (@game) ->
+    Phaser.Sprite.call(@, @game, 32, @game.world.height - 150, 'body')
 
   create: =>
-    @sprites = @game.add.group()
-
-    @createBodySprite()
+    @anchor.setTo(.5, 0)
+    @game.physics.arcade.enableBody(@)
     @createGunSprite()
     @createWifiSprite()
 
-    @leftKey = @game.input.keyboard.addKey(Phaser.Keyboard.A)
-    @rightKey = @game.input.keyboard.addKey(Phaser.Keyboard.D)
-
-  update: =>
-    @resetMotion()
-
-    if @leftKey.isDown
-      @moveLeft()
-    else if @rightKey.isDown
-      @moveRight()
-
-  createBodySprite: =>
-    @bodySprite = @game.add.sprite(32, @game.world.height - 150, 'body')
-    @bodySprite.anchor.setTo(.5, 0)
-    @game.physics.arcade.enableBody(@bodySprite)
-
-    @sprites.add(@bodySprite)
-
   createGunSprite: =>
-    @gunSprite = @game.add.sprite(32, @game.world.height - 125, 'gun')
-    @gunSprite.anchor.setTo(-0.45, 0)
-    @game.physics.arcade.enableBody(@gunSprite)
+    gunSprite = @game.add.sprite(0, 25, 'gun')
+    gunSprite.anchor.setTo(-0.45, 0)
 
-    @sprites.add(@gunSprite)
+    @addChild(gunSprite)
 
   createWifiSprite: =>
-    @wifiSprite = @game.add.sprite(33, @game.world.height - 168, 'wifi')
-    @wifiSprite.anchor.setTo(.5, 0)
-    @wifiSprite.animations.add('pulse', [0, 1, 2, 3], 1.7, true)
-    @wifiSprite.animations.play('pulse')
-    @game.physics.arcade.enableBody(@wifiSprite)
+    wifiSprite = @game.add.sprite(0, -18, 'wifi')
+    wifiSprite.anchor.setTo(.5, 0)
+    wifiSprite.animations.add('pulse', [0, 1, 2, 3], 1.7, true)
+    wifiSprite.animations.play('pulse')
 
-    @sprites.add(@wifiSprite)
-
-  resetMotion: =>
-    @sprites.setAll('body.velocity.x', 0)
+    @addChild(wifiSprite)
 
   moveRight: =>
-    @sprites.setAll('body.velocity.x', 250)
-    @sprites.setAll('scale.x', 1)
+    @body.velocity.x = 250
+    @scale.x = 1
 
   moveLeft: =>
-    @sprites.setAll('body.velocity.x', -250)
-    @sprites.setAll('scale.x', -1)
+    @body.velocity.x = -250
+    @scale.x = -1
+
+  resetMotion: =>
+    @body.velocity.x = 0

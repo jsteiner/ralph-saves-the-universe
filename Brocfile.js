@@ -31,6 +31,7 @@ var appAndDependencies = new mergeTrees(sourceTrees, { overwrite: true });
 
 var appJs = concat(appAndDependencies, {
   inputFiles: [
+    'phaser.js',
     '**/*.js'
   ],
   outputFile: '/assets/app.js'
