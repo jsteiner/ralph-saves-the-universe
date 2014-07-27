@@ -40,6 +40,6 @@ class PlayState
     @ground.create()
 
   createPlayer: =>
-    @player = new Player(@game)
+    @player = new Player(@game, 32, @game.world.height - 144)
     @game.add.existing(@player)
     @player.create()

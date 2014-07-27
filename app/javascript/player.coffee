@@ -1,11 +1,10 @@
 class Player extends Phaser.Sprite
-  constructor: (@game) ->
-    Phaser.Sprite.call(@, @game, 32, @game.world.height - 144, 'body')
+  constructor: (@game, x, y) ->
+    Phaser.Sprite.call(@, @game, x, y, 'body')
 
   create: =>
     @anchor.setTo(.5, 0)
     @game.physics.arcade.enableBody(@)
-    @body.collideWorldBounds = true
     @createGunSprite()
     @createWifiSprite()
 
@@ -24,11 +23,11 @@ class Player extends Phaser.Sprite
     @addChild(wifiSprite)
 
   moveRight: =>
-    @body.velocity.x = 250
+    @body.velocity.x = 500
     @scale.x = 1
 
   moveLeft: =>
-    @body.velocity.x = -250
+    @body.velocity.x = -500
     @scale.x = -1
 
   jump: =>
