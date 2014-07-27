@@ -19,6 +19,7 @@ class PlayState
 
     @leftKey = @game.input.keyboard.addKey(Phaser.Keyboard.A)
     @rightKey = @game.input.keyboard.addKey(Phaser.Keyboard.D)
+    @spacebar = @game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
 
   update: =>
     @game.physics.arcade.collide(@player, @ground)
@@ -29,6 +30,9 @@ class PlayState
       @player.moveLeft()
     else if @rightKey.isDown
       @player.moveRight()
+
+    if @spacebar.isDown && @player.body.touching.down
+      @player.jump()
 
   createGround: =>
     @ground = new Ground(@game, 0, @game.world.height - 64, @game.world.width, 64)
