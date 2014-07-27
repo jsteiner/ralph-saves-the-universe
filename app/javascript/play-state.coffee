@@ -15,7 +15,7 @@ class PlayState
     @game.stage.backgroundColor = "#6698FF"
 
     @game.physics.startSystem(Phaser.Physics.ARCADE)
-    @game.physics.arcade.gravity.y = 500
+    @game.physics.arcade.gravity.y = GRAVITY
 
     @leftKey = @game.input.keyboard.addKey(Phaser.Keyboard.A)
     @rightKey = @game.input.keyboard.addKey(Phaser.Keyboard.D)

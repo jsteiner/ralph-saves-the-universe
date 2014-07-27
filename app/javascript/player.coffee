@@ -32,7 +32,7 @@ class Player extends Phaser.Sprite
     @scale.x = -1
 
   jump: =>
-    @body.velocity.y = -500
+    @body.velocity.y = -(GRAVITY * 0.75)
 
   resetMotion: =>
     @body.velocity.x = 0

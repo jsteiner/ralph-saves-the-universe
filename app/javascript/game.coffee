@@ -1,3 +1,5 @@
+GRAVITY = 1200
+
 class Game
   constructor: ->
     @phaserGame = new Phaser.Game(
