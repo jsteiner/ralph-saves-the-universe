@@ -5,6 +5,7 @@ class Player extends Phaser.Sprite
   create: =>
     @anchor.setTo(.5, 0)
     @game.physics.arcade.enableBody(@)
+    @body.collideWorldBounds = true
     @createGunSprite()
     @createWifiSprite()
 
