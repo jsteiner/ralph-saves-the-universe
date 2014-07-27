@@ -4,21 +4,9 @@ class Game
       window.innerWidth
       window.innerHeight
       Phaser.AUTO
-      ''
-      { preload: @preload, create: @create, update: @update }
     )
 
-    @level = new Level(@phaserGame)
-    @player = new Player(@phaserGame)
+    @phaserGame.state.add('menu', MenuState)
+    @phaserGame.state.add('play', PlayState)
 
-  preload: =>
-    @level.preload()
-    @player.preload()
-
-  create: =>
-    @level.create()
-    @player.create()
-
-  update: =>
-    @level.update()
-    @player.update()
+    @phaserGame.state.start('menu')
