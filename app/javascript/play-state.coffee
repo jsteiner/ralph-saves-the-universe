@@ -32,6 +32,11 @@ class PlayState
     if @spacebar.isDown && @player.body.onFloor()
       @player.jump()
 
+  shutdown: =>
+    @removeKeys()
+    @player.destroy()
+    @map.destroy()
+
   createPlayer: =>
     @player = new Player(@game, 32, @game.world.height - 240)
     @game.add.existing(@player)
@@ -45,7 +50,20 @@ class PlayState
     @map.setCollisionByExclusion([])
     @layer.resizeWorld()
 
+    @map.setTileIndexCallback(8, @hitDynamite)
+
   createKeys: =>
     @leftKey = @game.input.keyboard.addKey(Phaser.Keyboard.A)
     @rightKey = @game.input.keyboard.addKey(Phaser.Keyboard.D)
     @spacebar = @game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+
+  removeKeys: =>
+    @game.input.keyboard.removeKey(Phaser.Keyboard.A)
+    @game.input.keyboard.removeKey(Phaser.Keyboard.D)
+    @game.input.keyboard.removeKey(Phaser.Keyboard.SPACEBAR)
+
+  hitDynamite: =>
+    @deathHandler()
+
+  deathHandler: =>
+    @game.state.start('gameover')

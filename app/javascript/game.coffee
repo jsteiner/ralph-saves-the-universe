@@ -10,5 +10,6 @@ class Game
 
     @phaserGame.state.add('menu', MenuState)
     @phaserGame.state.add('play', PlayState)
+    @phaserGame.state.add('gameover', GameOverState)
 
     @phaserGame.state.start('menu')
