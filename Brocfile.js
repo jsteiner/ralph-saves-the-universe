@@ -44,6 +44,11 @@ var images = pickFiles(app, {
   destDir: 'assets'
 });
 
+var tilemaps = pickFiles(app, {
+  srcDir: 'tilemaps',
+  destDir: 'assets'
+});
+
 var publicFiles = 'app/public';
 
-module.exports = mergeTrees([appJs, appCss, images, publicFiles]);
+module.exports = mergeTrees([appJs, appCss, tilemaps, images, publicFiles]);
